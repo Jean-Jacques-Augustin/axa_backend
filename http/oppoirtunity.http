@@ -1,0 +1,67 @@
+### Create Opportunity
+POST http://localhost:3000/opportunity
+Content-Type: application/json
+
+{
+  "informationsGenerales": {
+    "numeroOpportunite": "123",
+    "referenceDossier": "456",
+    "numeroSiretSiren": "789",
+    "affaire": "Affaire 1",
+    "nomClient": "Client 1",
+    "intermediaire": "Intermediaire 1",
+    "description": "Description 1",
+    "image": "Image 1",
+    "presenceCoassurance": "Oui"
+  },
+  "caracteristiquesTechniques": {
+    "adresseOperation": "Adresse 1",
+    "planAdresseOperation": [
+      "Image 1",
+      "Image 2"
+    ],
+    "descriptifDetailleOperation": "Description détaillée 1",
+    "coutOperation": {
+      "montant1": 1000,
+      "montant2": 2000,
+      "montant3": 3000
+    }
+  }
+}
+
+### Get All Opportunities
+GET http://localhost:3000/opportunity
+
+### Get Opportunity by ID
+GET http://localhost:3000/opportunity/{id}
+
+### Update Opportunity by ID
+PATCH http://localhost:3000/opportunity/{id}
+Content-Type: application/json
+
+{
+  "informationsGenerales": {
+    "numeroOpportunite": "123",
+    "referenceDossier": "456",
+    "numeroSiretSiren": "789",
+    "affaire": "Affaire 1",
+    "nomClient": "Client 1",
+    "intermediaire": "Intermediaire 1",
+    "description": "Description 1",
+    "image": "Image 1",
+    "presenceCoassurance": "Oui"
+  },
+  "caracteristiquesTechniques": {
+    "adresseOperation": "Adresse 1",
+    "planAdresseOperation": ["Image 1", "Image 2"],
+    "descriptifDetailleOperation": "Description détaillée 1",
+    "coutOperation": {
+      "montant1": 1000,
+      "montant2": 2000,
+      "montant3": 3000
+    }
+  }
+}
+
+### Delete Opportunity by ID
+DELETE http://localhost:3000/{id}
