@@ -1,9 +1,45 @@
 const Opportunity = require('../models/opportunity');
+const multer = require("multer");
+
 
 exports.createOpportunity = async (req, res) => {
-    const opportunity = new Opportunity(req.body);
-    await opportunity.save();
-    res.status(201).send(opportunity);
+    try {
+        const {
+            numeroOpportunite,
+            referenceDossier,
+            numeroSiretSiren,
+            affaire,
+            nomClient,
+            intermediaire,
+            description,
+            presenceCoassurance,
+            adresseOperation,
+            planAdresseOperation,
+            descriptifDetailleOperation,
+            coutOperation
+        } = req.body;
+        const images = req.files.map(file => file.path);
+        const newOpportunity = new Opportunity({
+            numeroOpportunite,
+            referenceDossier,
+            numeroSiretSiren,
+            affaire,
+            nomClient,
+            intermediaire,
+            description,
+            images,
+            presenceCoassurance,
+            adresseOperation,
+            planAdresseOperation,
+            descriptifDetailleOperation,
+            coutOperation,
+        });
+        const savedOpportunity = await newOpportunity.save();
+        res.status(201).json(savedOpportunity);
+    } catch (error) {
+        console.error('Error saving opportunity:', error);
+        res.status(500).json({error: 'Internal server error'});
+    }
 };
 
 exports.getOpportunities = async (req, res) => {
